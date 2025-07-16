@@ -8,11 +8,11 @@
         <version>3.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.android</groupId>
+    <groupId>com.daohaidang</groupId>
     <artifactId>BaseProject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>BaseProject</name>
-    <description>BaseProject</description>
+    <description>A base project for Spring Boot applications</description>
     <url/>
     <licenses>
         <license/>
