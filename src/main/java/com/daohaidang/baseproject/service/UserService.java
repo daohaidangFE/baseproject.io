@@ -1,4 +1,4 @@
 package com.daohaidang.baseproject.service;
 
-public class BaseService {
+public interface UserService {
 }
