@@ -26,4 +26,8 @@ public class Role {
 
     @OneToMany(mappedBy = "role")
     private Set<UserRole> userRoles = new HashSet<>();
+
+    public Role(ERole name) {
+        this.name = name;
+    }
 }
