@@ -1,7 +1,9 @@
 package com.daohaidang.baseproject.controller;
 
 import com.daohaidang.baseproject.common.ApiResponse;
+import com.daohaidang.baseproject.dto.request.LoginRequest;
 import com.daohaidang.baseproject.dto.request.RegisterRequest;
+import com.daohaidang.baseproject.dto.response.JwtResponse;
 import com.daohaidang.baseproject.entity.User;
 import com.daohaidang.baseproject.service.UserService;
 import jakarta.validation.Valid;
@@ -23,7 +25,5 @@ public class AuthController {
         ApiResponse<String> response = ApiResponse.success("User registered successfully");
         return ResponseEntity.ok(response);
     }
-
-
 
 }
