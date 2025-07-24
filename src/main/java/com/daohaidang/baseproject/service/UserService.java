@@ -6,5 +6,5 @@ import com.daohaidang.baseproject.dto.response.JwtResponse;
 
 public interface UserService {
     void register(RegisterRequest registerRequest);
-
+    
 }

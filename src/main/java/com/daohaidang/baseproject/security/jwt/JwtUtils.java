@@ -13,6 +13,8 @@ import io.jsonwebtoken.io.Decoders;
 
 import io.jsonwebtoken.security.Keys;
 
+
+//Tạo và xác thức token
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
