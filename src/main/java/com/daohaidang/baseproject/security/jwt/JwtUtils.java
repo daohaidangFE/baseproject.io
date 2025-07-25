@@ -34,7 +34,7 @@ public class JwtUtils {
                 .subject(userPrincipal.getUsername())
                 .issuedAt(new Date())
                 .expiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                .signWith(key(), Jwts.SIG.HS256)
+                .signWith(key(), Jwts.SIG.HS512)
                 .compact();
     }
 
@@ -64,6 +64,7 @@ public class JwtUtils {
         } catch (IllegalArgumentException e) {
             logger.error("JWT claims string is empty: {}", e.getMessage());
         }
+        logger.error("JwtUtils: Token validation failed!");
         return false;
     }
 }

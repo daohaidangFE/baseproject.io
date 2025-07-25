@@ -4,6 +4,7 @@ import com.daohaidang.baseproject.common.enums.ERole;
 import com.daohaidang.baseproject.dto.request.LoginRequest;
 import com.daohaidang.baseproject.dto.request.RegisterRequest;
 import com.daohaidang.baseproject.dto.response.JwtResponse;
+import com.daohaidang.baseproject.dto.response.UserProfileResponse;
 import com.daohaidang.baseproject.entity.Role;
 import com.daohaidang.baseproject.entity.User;
 import com.daohaidang.baseproject.entity.UserRole;
@@ -98,6 +99,21 @@ public class UserServiceImpl implements UserService {
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles);
+    }
+
+    @Override
+    public List<UserProfileResponse> getAllUsers() {
+        List<User> users = userRepository.findAll();
+
+        return users.stream()
+                .map(user -> UserProfileResponse.builder()
+                        .id(user.getId())
+                        .username(user.getUsername())
+                        .email(user.getEmail())
+                        .fullName(user.getFullName())
+                        .build()
+                )
+                .collect(Collectors.toList());
     }
 
 }
