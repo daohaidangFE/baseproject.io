@@ -1,5 +1,6 @@
 package com.daohaidang.baseproject.config;
 
+import com.daohaidang.baseproject.security.CustomAccessDeniedHandler;
 import com.daohaidang.baseproject.security.jwt.AuthEntryPointJwt;
 import com.daohaidang.baseproject.security.jwt.AuthTokenFilter;
 import com.daohaidang.baseproject.service.impl.UserDetailsServiceImpl;
@@ -26,6 +27,7 @@ public class SecurityConfig {
 
     private final AuthTokenFilter authTokenFilter;
     private final AuthEntryPointJwt authEntryPointJwt;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -36,7 +38,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPointJwt)
-                        .accessDeniedHandler(new AccessDeniedHandlerImpl()))
+                        .accessDeniedHandler(accessDeniedHandler))
 
                 .sessionManagement(session ->  session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
