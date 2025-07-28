@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 //@EnableCaching
+
 public class BaseProjectApplication {
 
     public static void main(String[] args) {
