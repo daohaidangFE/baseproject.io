@@ -15,6 +15,8 @@ import com.daohaidang.baseproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -43,7 +45,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+//    @CacheEvict(value = "users_all", allEntries = true)
     public void register(RegisterRequest registerRequest) {
+        System.out.println("======> REGISTERING NEW USER AND EVICTING 'users_all' CACHE <======");
         if(userRepository.existsByUsername(registerRequest.getUsername())) {
             throw new RuntimeException("Error: Username is already taken!");
         }
@@ -102,7 +106,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+//    @Cacheable(value = "users_all")
     public List<UserProfileResponse> getAllUsers() {
+        System.out.println("======> EXECUTING DB QUERY TO GET ALL USERS <======");
         List<User> users = userRepository.findAll();
 
         return users.stream()
